@@ -1,0 +1,116 @@
+<html>
+<head>
+    <title> Ranjith Dhanaraj (19200041) - Exploration & Communication Assignment</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.9.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.0.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.2.1"></script>
+</head>
+<body>
+    <table style="width: 850px" cellspacing="5" cellpadding="5">
+    <tbody>
+    <tr>
+    <td style="width: 200px; vertical-align: top;"><strong>Name:&nbsp;</strong></td>
+    <td style="vertical-align: top;">Ranjith Dhanaraj</td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Student Number:</strong></td>
+    <td style="vertical-align: top;">19200041</td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Dataset description:</strong></td>
+    <td style="vertical-align: top;">
+    <p><a href="https://www.kaggle.com/kemical/kickstarter-projects" target="_blank" rel="noopener">Kickstarter Dataset</a>.</p>
+    <p> The selected Dataset is from kaggle which contains information about kickstarter-projects. The data was provided by a company based in Brooklyn, New York. This dataset is from the year 2016. My hope is that we will be able to analyse the dataset too obtain critical insights into the development of crow-funding projects.</p>
+	<p> The dataset was filtered using python. The data that were extracted are the name of the project, the main category it belongs to, date it was launched, the current state of the project, the country where the project is based from and finally the amount of money they have received in USD.</p>
+    </td>
+    </tr>
+    <tr>
+    <td style="vertical-align: top;"><strong>Initial questions</strong></td>
+    <td style="vertical-align: top;">Q3. State of Kickstarter Projects based on category.</td>
+    </tr>
+    </tbody>
+    </table>
+    <hr />
+  <div id="vis" class="container"></div>
+  <script type="text/javascript">
+    var yourVlSpec =  {
+   "description": " Below specifications will generate a bar chart which will illustrate number of kickstarter-projects by each country.",
+  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/RanjithDhanaraj/KickstarterDataAnalysis/master/ProcessedData.csv",
+    "format": {
+      "type": "csv"
+    }
+  },
+  "hconcat":[
+  {
+  "mark": {
+    "type": "bar", "tooltip": true
+  },
+  "encoding": {
+    "y": {
+      "field": "main_category",
+      "type": "ordinal",
+      "sort":"-x",
+      "axis": {"title": "Main Categories"}
+    },
+    "x":{
+      "field": "*",
+      "type": "quantitative",
+      "scale": {"domain": [0,60000]},
+      "aggregate":"count",
+      "axis":{"title": "Number of Kickstarter Projects"}
+      }
+              },
+    "title": {
+    "text": "Kickstarter - Number of Kickstarter Projects by Category",
+    "anchor": "middle",
+    "fontSize":16
+           },
+  "width":400,
+  "height":1500
+  }
+ ],
+ "config": {
+  "concat":{"spacing": 15}, 
+ "axis": {"labelFontSize":12,"titleFontSize":14, "titlePadding":12},
+ "legend": {"titleFontSize":12, "labelFontSize":12}
+            }
+}
+        vegaEmbed("#vis", yourVlSpec);
+  </script>
+    <hr />
+<table style="width: 850px;" cellspacing="5" cellpadding="5">
+<tbody>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Description:&nbsp;</strong></td>
+<td style="vertical-align: top;">Above specifications will generate a bar chart which illustrates which category of projects are the most popular right now. Hovering over the category will provide us with the exact count for each category. </td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Insight:</strong></td>
+<td style="vertical-align: top;">
+We can see that most of the kickstarter-projects are oriented towards entertainment.
+The top catergory which generates the most number of projects is Film and Video.  The next in demand categories are Music. Out of all the projects maximum of them were made in Films & Vide, Music, Publishing, Games and Technology. Like these are the top 5 categories respectively, with many projects when compareed to others. It is evident enough that people were very much interested in Media (Video, Film, and Music) category projects in year 2015 and early time of 2016. 
+<p> This graph implies that most people have ideas relating to Media when they start out with a kickstarter-project.</p></td>
+</tr>
+<tr>
+<td style="vertical-align: top;"><strong>Design considerations</strong></td>
+<td style="vertical-align: top;">For comparision of number of projects by category, a bar graph seems to be the most suitable candidate since we can see the values easily and the visualization is quite simple as well. The categories are on the Y-axis since it will be easy for the person viewing it to read and understand the axis labels.
+<p>
+</td>
+</tr>
+<tr>
+<td style="width: 200px; vertical-align: top;"><strong>Data filtering and transformation:&nbsp;</strong></td>
+<td style="vertical-align: top;"> <p style="font-weight: bold;">Data Preprocessing & Filtering:</p>
+<P>Preprocessing is done using python and processed data is saved into new CSV file.</p>
+<p>1. For preprocessing the data, loaded the data into pandas Dataframe.</p>
+<p>2. I selected the name of the project, the main category it belongs to, date it was launched, the current state of the project, the country where the project is based from and finally the amount of money they have received in USD </p>
+<p>3. Selected Data from just a 2 years and ignored the rest</p>      
+<p>4. Filled null values with Misc, 0 and Others depending on the column.</p>
+<p>5. For better comparison "usd_pledged_real" attributed is transformed into millions.</p>
+ </td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
